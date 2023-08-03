@@ -1,7 +1,10 @@
 package mylibrary;
 
+import jdk.swing.interop.SwingInterOpUtils;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public interface CostumerDAO {
@@ -36,6 +39,35 @@ public interface CostumerDAO {
     }
 
     public static void readCustomerDB(){
+
+        Conexion dbConnect=new Conexion();
+
+        PreparedStatement ps = null;
+
+        ResultSet resultSet = null;
+
+        try (Connection connect = dbConnect.getConnection()) {
+
+            String query = "SELECT * FROM customer";
+            ps = connect.prepareStatement(query);
+            resultSet = ps.executeQuery();
+
+            while(resultSet.next()){
+                System.out.println("ID: "+resultSet.getInt("Document_ID"));
+                System.out.println("Tipo Documento: "+resultSet.getString("Doc_Type"));
+                System.out.println("Nombre: "+resultSet.getString("Name"));
+                System.out.println("Apellidos: "+resultSet.getString("Last_name"));
+                System.out.println("Correo: "+resultSet.getString("Email"));
+                System.out.println("Grupo: "+resultSet.getString("Class"));
+                
+
+
+            }
+
+        }catch (SQLException e){
+            System.out.println("No se recuperaron los registros");
+            System.out.print("e");
+        }
 
     }
 

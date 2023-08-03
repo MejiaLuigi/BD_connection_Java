@@ -29,6 +29,7 @@ public class Menu {
                     break;
                 case 2:
                     System.out.println("Listado de Usuario");
+                    Customer_service.readCustomer();
                     break;
                 case 3:
                     System.out.println("Actualizar Datos de Usuario");

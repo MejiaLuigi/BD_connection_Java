@@ -37,6 +37,7 @@ public class Customer_service {
     }
 
     public static void readCustomer(){
+        CostumerDAO.readCustomerDB();
 
     }
 
